@@ -1,6 +1,58 @@
 import React, { useState } from 'react';
 import'./App.css';
+import {createSmartappDebugger, createAssistant,AssistantAppState} from '@sberdevices/assistant-client'
+let initPhrase = 'Запусти тест на знание столиц';
+let token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYTJkZTI2ZDJjZGQ0MmRjN2Q0NmIxZjM3YzJjZmY5NzBhOTRmODQ0MmI0Mzk3MWQ5YjY5M2NhNTg4MjAwM2JiNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTYyNDI3NjAyMSwiaWF0IjoxNjI0MTg5NjExLCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiM2ZiODRmMDMtZmQxZi00ODY1LThkMDItMTIyN2Q1MjMzMWJhIiwic2lkIjoiNzg5ZDc3NjAtMWQ5Mi00ZjQ2LTg5MjAtYTk1Yzk4MWQwNDFiIn0.e3oEwLWQAAnov0xWuDQ0zbdoPDq6raD6dBkMyurWlO0RvYvP4cc_BaOyFu73C_nsg_o6WvgYOdsUzh7H8DF3VaVui_uuVTtPics73nScevz_y9fCSuA2GEndQe-V71N3OAslbeN6wAL_K5Mko-C2-pNZVxUfSH6A28-Yu1JTpGJige1eXj3zhLi-jhe-ODP8JLfr772cefYVLGjZTCEZqtuW9T_tR52t_jMy0_qwKC3dsvj4_-1IsEb2--RGiV5x8UoP8RXy6PqFKY2v5DrP80syqrc5TThmYB17XlwGmufmxwlHwSM480DZUXQsIM7KyD_IMWoLWYVxjv595Jd1WzPDvXBeYTCWc8RcUaU7pP-TWW-Wvsskmm4Prb20Fuu1_Ug7u3D6ecgFAoqjMZ-_pWp_9JlyoI-YG311yXVGtqBSeMDVxUw8U3BU9tjXBenn55iIOLEjNC3AGbtcblLqLAh90QY9bSgKYH8iwBv_mbIZ4RVKhstZUEiucOXxUaEKjsNe1l7Yk4lREWyS0RKxYqUSs4YWSEeB1xGihuOppD5PSNkG7muSQKL5vvydvGGRzyoQiwlZa7b4PNwlgl3dOj4Iv7xYMh6JJPXDSOqLCPiJhDecnN-K0jERbD6oshTRTyJfnDGtA783dSgrUK9LCDjf1Ptitx7Av1P3cyWkquw'
+const init = () => {
+  return createSmartappDebugger({
+    token,
+    initPhrase,
+    getState
+  })
+  return createAssistant({getState});
+
+}
+let assistant = init();
+
+function getState() {
+  console.log("State was get");
+  const state = {
+    item_selector: {
+      items: [
+       App.answers,
+       App.questions
+      ]
+    }
+  }
+  return state;
+}
 export default function App() {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+	const [showScore, setShowScore] = useState(false);
+	const [score, setScore] = useState(0);
+  assistant.on("data", (event) => {
+    console.log("App assistant.on(\"data\")", event);
+    if (event.action) {
+      dispatchAction(event.action);
+    }
+  });
+
+  function dispatchAction(action) {
+    console.log("App dispatchAction", action);
+    switch (action.type) {
+      case 'quiza':
+    console.log(action.anytext)
+    handleAnswerOptionClick (action.anytext)
+      break
+      case 'restart_game':
+      
+          restart();
+      
+        break
+      default:
+        console.warn('Unknown event.action.type', action.type)
+    }
+  }
   const answers =[
     {a:"Загреб"},
     {a:"Белград"},
@@ -89,7 +141,7 @@ export default function App() {
       },
       {
         question: "Какой из этих городов является столицей Малайзии?",
-      choices: [{answerText:"Куала-Лумпур"},{answerText: "Джорджтаун"}, {answerText:"Джохор-Бару"}, {answerText:"Куантан"}],
+      choices: [{answerText:"Куала-Лумпур"},{answerText: "Джорджтаун"}, {answerText:"Джохор-Бару"}, {answerText:"Кингстон"}],
       },
       {
         question: "Какой из этих городов является столицей Бразилии?",
@@ -113,9 +165,7 @@ export default function App() {
      },
 	];
 
-	const [currentQuestion, setCurrentQuestion] = useState(0);
-	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
+
 function restart(){
   setScore(0);
   setCurrentQuestion(0);
