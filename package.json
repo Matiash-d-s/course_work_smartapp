@@ -14,7 +14,7 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-replace": "^2.4.2",
     "@sberdevices/assistant-client": "^2.11.9",
-    "@sberdevices/plasma-tokens": "^1.6.1",
+    "@sberdevices/plasma-tokens": "1.5.1",
     "concurrently": "^6.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

@@ -1,6 +1,6 @@
 <script>
   import {onMount} from 'svelte'
-  import {createSmartappDebugger, createAssistant} from '@sberdevices/assistant-client'
+  import {createAssistant} from '@sberdevices/assistant-client'
   import {logger} from './logging'; // Use custom logger to clean up assistant-client`s spam
   import {setTheme} from './themes';
 
@@ -17,7 +17,7 @@
     {name: 'Старана 3', used: false},
     {name: 'Старана 4', used: false},
   ];
-  let country = {emoji: '🇧🇼'};
+  let country = {iso: 'bw'};
   let score = 0;
 
   onMount(() => {
@@ -55,7 +55,7 @@
         return;
       }
       if (event.type === 'character') {
-        character = event.character.id;
+        // character = event.character.id;
       }
       if (event.type === 'smart_app_data' && event.smart_app_data) {
         if (event.smart_app_data.type === 'close_app') {
@@ -64,6 +64,7 @@
           return;
         }
         ({country, variants, score} = event.smart_app_data);
+        logger.log(event.smart_app_data);
       }
     });
   })
@@ -79,7 +80,7 @@
 <main>
   <div class="card">
     <h2>Ваш счет: {score}</h2>
-    <h1>{country.emoji}</h1>
+    <img src="/flags/{country.iso}.svg" alt="{country.name} flag">
     <div class="buttons">
       {#each variants as {name, used}, i}
         <button class:used on:click={() => {click(i)}}>{name}</button>
@@ -99,11 +100,20 @@
     color: var(--plasma-colors-text);
   }
 
+  img {
+    min-width: 300px;
+    width: 70%;
+    margin: 20px;
+  }
+
   .card {
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   }
 
   .used {
@@ -122,12 +132,12 @@
   }
 
   button {
-    font-size: 14px;
     margin: 10px;
-    padding: 10px;
+    padding: 20px;
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 30px;
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 5px;
@@ -145,18 +155,22 @@
     font-size: 50px;
   }
 
-  h1 {
-    color: #14c07c;
-    text-align: center;
-    margin: 0;
-    font-size: 200px;
-    text-transform: uppercase;
-    font-weight: 100;
-  }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
+  @media (max-width: 500px) {
+    h2 {
+      font-size: 30px;
+    }
+    img {
+      min-width: 100px;
+      width: 90%;
+      padding: 10px;
+    }
+    .card {
+      padding: 20px 0;
+    }
+    button {
+      font-size: 17px;
+      padding: 10px;
     }
   }
 </style>
