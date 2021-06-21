@@ -107,9 +107,11 @@ function* script(r) {
 
     } else if (r.nlu.lemmaIntersection(['помощь', 'помочь'])) {
       rsp.msg = 'Это игра Угадай флаг. Вам нужно угадать как можно больше флагов стран. ' +
-        'За каждый отгаданный флаг вы получайте очки, которые характеризуют ваши познания.'
+        'За каждый отгаданный флаг вы получайте очки, которые характеризуют ваши познания. ' +
+        'Вы можете пропустить вопрос, сказав Дальше.'
       rsp.msgJ = 'Это игра Угадай флаг. Тебе нужно угадать как можно больше флагов стран. ' +
-        'За каждый отгаданный флаг ты получишь очки, которые характеризуют твои познания.'
+        'За каждый отгаданный флаг ты получишь очки, которые характеризуют твои познания. ' +
+        'Ты можешь пропустить вопрос, сказав Дальше.'
     } else if (r.nlu.lemmaIntersection(['дальше', 'следующий', 'другой'])) {
       rsp.msg = 'Обновляю'
       updateState();
@@ -146,9 +148,9 @@ app.post('/app-connector/', (request, response) => {
   response.send(body);
 });
 
-// app.post('/log', (request, response) => {
-//   console.log(request.body);
-//   response.send('ok')
-// })
+app.post('/log', (request, response) => {
+  console.log(request.body);
+  response.send('ok')
+})
 
 app.listen(port, () => console.log(chalk.blue(`Start server on http://localhost:${port}/`)));

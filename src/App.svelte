@@ -1,6 +1,6 @@
 <script>
   import {onMount} from 'svelte'
-  import {createAssistant} from '@sberdevices/assistant-client'
+  import {createAssistant, createSmartappDebugger} from '@sberdevices/assistant-client'
   import {logger} from './logging'; // Use custom logger to clean up assistant-client`s spam
   import {setTheme} from './themes';
 
@@ -44,18 +44,18 @@
     });
 
     assistant.on('data', (event) => {  // Set your action or data hooks
-      // fetch('/log', {
-      //   method: "POST",
-      //   body: JSON.stringify(event),
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      // });
+      fetch('/log', {
+        method: "POST",
+        body: JSON.stringify(event),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
       if (!event.type) {  // Use invariants to prevent errors on Sber Portal
         return;
       }
       if (event.type === 'character') {
-        // character = event.character.id;
+        character = event.character.id;
       }
       if (event.type === 'smart_app_data' && event.smart_app_data) {
         if (event.smart_app_data.type === 'close_app') {
