@@ -12,7 +12,7 @@ $: npx degit dikower/dialute-starter
   ```bash
   $: npm run dev
   ```
-* Compile _Svelte_ and start _E****xpress_ app with static serving
+* Compile _Svelte_ and start _Express_ app with static serving
   ```bash
   $: npm run build
   ```
