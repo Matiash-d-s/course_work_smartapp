@@ -5,7 +5,7 @@
   import {setTheme} from './themes';
 
   let assistant;
-  let token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNjk4NTAzMzgzMjViZmViZjg2ZGVjYjAzZDkzZjkwZDQ2ZmMxNmNmZGZiNTUyMDAzNGQxOTFkMWEwYTQ4NDQyNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTYyNDMwNzkxMiwiaWF0IjoxNjI0MjIxNTAyLCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiZmU5NjdhY2MtNGIyZi00MzBkLTljOGItMmU4OGVmNjZkYmRmIiwic2lkIjoiN2JjN2I0NmItODM0Yi00MTRjLThmZWYtN2JkYzY4NWNhZDczIn0.plPVFE855wLn0mwQQTX1BPuC-fdY8DKPlnN0enFrRFM7wkVQCevD6MsZsPU1nuP3jNe77lzd46NmFDwqKJ8FvBimlB27MsGySNrwyFTEZyDkE8y201nQGtPS7GHHAHEgXlvc5wARl65Gjl7sMVo1QCXfTOyJevPbRHQHwEITVVmhrpprAUMi8cwhyc7Ogrc4mriMDsbfAtlQl0JnyFzJls5nkl4qS4D5H2Rd-sfLxG1DbGSbYKm2Rslrk9IyUK2NZq-qFjxSD29egQ7TXibcJfuYJyOnXyOc_J3D2GZ835gjhw86D6Rf4JhLjyzNBK5ml7qrC_3moVivLFeCGU6zxOiLa68gbHabrnnCKjKSWu2mepblbh42pIsu7dWRJH3qTuFVkIbzH3Z8ASbFEeRkvrUpf1RgYI-9r50E6kZhR-Y4zdySV-N2vzD5IwOz9Z1JwyFvedoMTRTVL-pTwM7ZFPMq9j7DtvgHg2nsGIHtMu_7_uOxvAw4OHwEWIZGlD5ElyZTghWR_-BYxJe2Xae0TUeHSCklHX3rLAQ1cG5r-OBCAhp24ZqIF__tCA_eh3GQTiHMzoYXq2sWud8X7fmXF-R2ytTuWJIERgBcwbPdi4OA57oBhQEi4NWJKLfRJHZmg-HXIFGKGIo2jiWPksi85Rr7FzuMG6mxzuR-cLgM8ag';       // Set token for assistant-client from https://developers.sber.ru/studio/settings/emulator
+  let token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNjk4NTAzMzgzMjViZmViZjg2ZGVjYjAzZDkzZjkwZDQ2ZmMxNmNmZGZiNTUyMDAzNGQxOTFkMWEwYTQ4NDQyNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTYyNDQ0NjI5MiwiaWF0IjoxNjI0MzU5ODgyLCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiMTU1ZWEzYjktOTQyOC00NjJkLTkxZjEtOGYzZDk3NjBlODZhIiwic2lkIjoiY2MzYmJlYjktNjkxYS00MDhiLWI4OGQtZTE5OWRjZmZmZmZkIn0.t1thJRzlTSV3ADVOWQXQbETGmh5Vj2XZwPUyNC4fzgSbOYTPrZgHwRFgtBHnnQVC5aBOJRUiotfVCOsvfmG-fjbSAuPB5Mc_GjFJpJ1V2Y_yBhQ7_S6kz5eNooKELy53mPlV67fqta9hg32p4yoLYZUpMuO7gLKbcWOr5S7AZT6iOCgoRC5kALVdRbqHOjxSgLy_QtUCrK3hP_ehyG_S8o689_CdD7uz-_3HaD1IzAhuoBbyq3JAxinfqzfdmMPUWwCbCUf3HwYTaZJlVcbMOprm0ao0dZzkhdk3zgkqSVKpmqmB4y5iQie7UR8HrkAO-K5FZxcvuC4i5ulzAPcmaXYP845ZEzJaswbppkQHfBiDSy6zmAmTlMUzbb5tG1zINM0HdFMw0LmCRCRaFNChQpMYkL8rgLLahK87yh2vpHfdTtL8hXmNLh-QxyFcsuM7S6J23xNnSFnjWRenQ16KNKj10MSNwc1X551bXlTN_Tg-4foBrjnJOx-k-zXEK9DdIo8JEzVd5WxYUqrEztsztNGUUtQkMa91mstcbkP3dG9iOL0nuDuw0fgLfX1t0WFyZooCi3joRKsw5V3rIQce-f2rWVTtjpR7E9p8dY4-lIUOOiTC0H4778RRX7POmOdn7T8WmaxgE5jc9VIewMQ1jk6XQRBvSsHRt9dI2JIIxc8';       // Set token for assistant-client from https://developers.sber.ru/studio/settings/emulator
   let initPhrase = 'Запусти Угадай флаг';  // Set the name of your SmartApp for activation
 
   let character = 'eva';
@@ -57,6 +57,7 @@
       if (event.type === 'character') {
         character = event.character.id;
       }
+      logger.log(event)
       if (event.type === 'smart_app_data' && event.smart_app_data) {
         if (event.smart_app_data.type === 'close_app') {
           logger.log('Closing app')
@@ -111,6 +112,8 @@
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 30px;
+    width: 80vw;
+    max-width: 1000px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -137,7 +140,7 @@
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 700;
-    font-size: 30px;
+    font-size: 25px;
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 5px;
@@ -156,7 +159,10 @@
   }
 
 
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
+    .card {
+      width: 100%;
+    }
     h2 {
       font-size: 30px;
     }

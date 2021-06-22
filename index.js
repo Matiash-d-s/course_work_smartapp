@@ -28,7 +28,6 @@ function shuffle(array) {
 function* script(r) {
   let unusedFlags = [...flags];
   let rsp = r.buildRsp();
-
   let state = {
     'score': 0,
     'country': '',
