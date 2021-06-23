@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "rollup -c && node index.js",
+    "build": "rollup -c",
+    "serve": "node index.js",
     "dev": "concurrently --kill-others \"npm run dev-front\" \"npm run dev-back\"",
     "dev-front": "rollup -c -w",
     "dev-back": "nodemon index.js",

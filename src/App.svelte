@@ -22,8 +22,7 @@
 
   onMount(() => {
     function getState() {
-      console.log('State was get');
-      return {};
+      return {variants, country, score};
     }
 
     const init = () => {
@@ -37,20 +36,22 @@
       return createAssistant({getState});
       // TODO: Use to run it in production mode inside Salute App
     }
+
     assistant = init();
 
     assistant.on('start', () => {
       logger.log('SmartApp started',);
     });
 
+
     assistant.on('data', (event) => {  // Set your action or data hooks
-      fetch('/log', {
-        method: "POST",
-        body: JSON.stringify(event),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      });
+      // fetch('/log', {
+      //   method: "POST",
+      //   body: JSON.stringify(event),
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      // });
       if (!event.type) {  // Use invariants to prevent errors on Sber Portal
         return;
       }
@@ -80,7 +81,7 @@
 
 <main>
   <div class="card">
-    <h2>Ваш счет: {score}</h2>
+    <h2>Счет: {score}</h2>
     <img src="/flags/{country.iso}.svg" alt="{country.name} flag">
     <div class="buttons">
       {#each variants as {name, used}, i}
@@ -103,7 +104,7 @@
 
   img {
     min-width: 300px;
-    width: 70%;
+    width: 60%;
     margin: 20px;
   }
 
@@ -117,6 +118,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: -100px;
   }
 
   .used {
@@ -162,6 +164,7 @@
   @media (max-width: 600px) {
     .card {
       width: 100%;
+      margin: 0;
     }
     h2 {
       font-size: 30px;
@@ -170,6 +173,7 @@
       min-width: 100px;
       width: 90%;
       padding: 10px;
+      max-height: 300px;
     }
     .card {
       padding: 20px 0;

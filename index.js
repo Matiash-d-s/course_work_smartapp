@@ -26,6 +26,7 @@ function shuffle(array) {
 
 
 function* script(r) {
+  console.log(r.userId)
   let unusedFlags = [...flags];
   let rsp = r.buildRsp();
   let state = {
@@ -59,8 +60,8 @@ function* script(r) {
   function afterCorrect() {
     updateState();
     state.score++;
-    rsp.msg = choice(['Правильно!', 'Здорово!', 'Потрясяюще!', 'Угадали!', 'Браво!', 'Вы молодец!']);
-    rsp.msgJ = choice(['Правильно!', 'Здорово!', 'Потрясяюще!', 'Верно!', 'Браво!', 'Молодец!']);
+    rsp.msg = choice(['Правильно!', 'Здорово!', 'Потрясающе!', 'Угадали!', 'Браво!', 'Вы молодец!']);
+    rsp.msgJ = choice(['Правильно!', 'Здорово!', 'Потрясающе!', 'Верно!', 'Браво!', 'Молодец!']);
   }
 
   function afterWrong() {
@@ -70,7 +71,9 @@ function* script(r) {
       useButton(r.msg);
     }
     rsp.msg = choice(['Не угадали!', 'Неверно!', 'Неправильно!']);
-    rsp.data = state;
+    rsp.msgJ = choice(['Не угадал!', 'Неверно!', 'Неправильно!']);
+    console.log(state)
+    // rsp.data = state;
   }
 
   updateState();
@@ -98,6 +101,7 @@ function* script(r) {
 
     if (r.msg.toLowerCase() === state.country.name.toLowerCase()) {
       afterCorrect();
+
     } else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго!'
       rsp.msgJ = 'Еще увидимся. Пока!'
@@ -111,15 +115,14 @@ function* script(r) {
       rsp.msgJ = 'Это игра Угадай флаг. Тебе нужно угадать как можно больше флагов стран. ' +
         'За каждый отгаданный флаг ты получишь очки, которые характеризуют твои познания. ' +
         'Ты можешь пропустить вопрос, сказав Дальше.'
+
     } else if (r.nlu.lemmaIntersection(['дальше', 'следующий', 'другой'])) {
       rsp.msg = 'Обновляю'
       updateState();
+
     } else {
       afterWrong();
     }
-    //
-    // console.log(rsp.pld)
-    // console.log(rsp.pld.items)
     yield rsp;
   }
   rsp.msg = 'Поздравляю! Вы знаете все флаги мира!'
@@ -143,13 +146,14 @@ app.use(express.json());
 app.use(express.static('public'))
 
 app.post('/app-connector/', (request, response) => {
+  console.log(dm.sessions);
   const body = dm.process(request.body);
   response.send(body);
 });
 
-app.post('/log', (request, response) => {
-  console.log(request.body);
-  response.send('ok')
-})
+// app.post('/log', (request, response) => {
+//   console.log(request.body);
+//   response.send('ok')
+// })
 
 app.listen(port, () => console.log(chalk.blue(`Start server on http://localhost:${port}/`)));
