@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "chalk": "^4.1.1",
-    "dialute": "0.0.21",
     "express": "^4.17.1",
     "json-to-css": "^0.1.0",
     "sirv-cli": "^1.0.0"

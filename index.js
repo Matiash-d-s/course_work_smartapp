@@ -1,6 +1,6 @@
 'use strict';
 
-const {DialogManger} = require("dialute");
+const {DialogManger} = require("./Dialute/index");
 const express = require("express");
 const chalk = require("chalk");
 const fs = require("fs");
@@ -116,15 +116,16 @@ function* script(r) {
         'За каждый отгаданный флаг ты получишь очки, которые характеризуют твои познания. ' +
         'Ты можешь пропустить вопрос, сказав Дальше.'
 
-    } else if (r.nlu.lemmaIntersection(['дальше', 'следующий', 'другой'])) {
-      rsp.msg = 'Обновляю'
+    } else if (r.nlu.lemmaIntersection(['далекий', 'следующий', 'другой'])) {
       updateState();
+      rsp.msg = 'Обновляю'
 
     } else {
       afterWrong();
     }
     yield rsp;
   }
+
   rsp.msg = 'Поздравляю! Вы знаете все флаги мира!'
   rsp.msgJ = 'Поздравляю! Ты знаешь все флаги мира!'
   rsp.data = {'type': 'close_app'}
@@ -146,7 +147,7 @@ app.use(express.json());
 app.use(express.static('public'))
 
 app.post('/app-connector/', (request, response) => {
-  console.log(dm.sessions);
+  // console.log(dm.sessions);
   const body = dm.process(request.body);
   response.send(body);
 });

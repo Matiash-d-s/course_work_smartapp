@@ -1,6 +1,6 @@
 <script>
   import {onMount} from 'svelte'
-  import {createAssistant, createSmartappDebugger} from '@sberdevices/assistant-client'
+  import {createAssistant} from '@sberdevices/assistant-client'
   import {logger} from './logging'; // Use custom logger to clean up assistant-client`s spam
   import {setTheme} from './themes';
 
@@ -19,7 +19,7 @@
   ];
   let country = {iso: 'bw'};
   let score = 0;
-
+  let main;
   onMount(() => {
     function getState() {
       return {variants, country, score};
@@ -66,6 +66,7 @@
           return;
         }
         ({country, variants, score} = event.smart_app_data);
+        main.focus();
         logger.log(event.smart_app_data);
       }
     });
@@ -79,14 +80,16 @@
   }
 </script>
 
-<main>
+<main bind:this={main}>
   <div class="card">
     <h2>Счет: {score}</h2>
     <img src="/flags/{country.iso}.svg" alt="{country.name} flag">
     <div class="buttons">
-      {#each variants as {name, used}, i}
-        <button class:used on:click={() => {click(i)}}>{name}</button>
-      {/each}
+      {#key variants}
+        {#each variants as {name, used}, i}
+          <button id="button-{i}" class:used on:click={() => {click(i)}}>{name}</button>
+        {/each}
+      {/key}
     </div>
   </div>
 </main>
@@ -166,18 +169,22 @@
       width: 100%;
       margin: 0;
     }
+
     h2 {
       font-size: 30px;
     }
+
     img {
       min-width: 100px;
       width: 90%;
       padding: 10px;
       max-height: 300px;
     }
+
     .card {
       padding: 20px 0;
     }
+
     button {
       font-size: 17px;
       padding: 10px;

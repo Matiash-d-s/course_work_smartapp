@@ -1,0 +1,15 @@
+/node_modules/
+/public/build/
+
+.idea
+.vscode
+.DS_Store
+.pnp.js
+yarn.lock
+.yarn
+.vercel
+.yarnrc.yml
+.vercel
+
+.vercel
+yarn.lock
