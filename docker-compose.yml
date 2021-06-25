@@ -7,7 +7,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.front.entrypoints=https"
-      - "traefik.http.routers.front.rule=Host(`guesstheflag.hackmasters.tech`)"
+      - "traefik.http.routers.front.rule=Host(`flag.hackmasters.tech`)"
       - "traefik.http.routers.front.tls=true"
       - "traefik.http.routers.front.tls.certresolver=letsEncrypt"
       - "traefik.http.middlewares.redirect-to-https.redirectScheme.scheme=https"
@@ -23,7 +23,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-#      -/traefik:.
       - ./traefik/traefik.yaml:/traefik.yaml:ro
       - ./traefik/acme.json:/acme.json:ro
     labels:

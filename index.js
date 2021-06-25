@@ -64,16 +64,18 @@ function* script(r) {
     rsp.msgJ = choice(['Правильно!', 'Здорово!', 'Потрясающе!', 'Верно!', 'Браво!', 'Молодец!']);
   }
 
-  function afterWrong() {
+  function afterWrong(useButtons = true) {
     if (r.type === 'SERVER_ACTION') {
-      useButton(r.act.data);
+      if (useButtons) {
+        useButton(r.act.data);
+      }
     } else {
-      useButton(r.msg);
+      if (useButtons) {
+        useButton(r.msg);
+      }
     }
     rsp.msg = choice(['Не угадали!', 'Неверно!', 'Неправильно!']);
     rsp.msgJ = choice(['Не угадал!', 'Неверно!', 'Неправильно!']);
-    console.log(state)
-    // rsp.data = state;
   }
 
   updateState();
@@ -99,7 +101,7 @@ function* script(r) {
       continue;
     }
 
-    if (r.msg.toLowerCase() === state.country.name.toLowerCase()) {
+    if (r.msg.replace(/-/g, ' ').toLowerCase() === state.country.name.replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
 
     } else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
@@ -111,12 +113,13 @@ function* script(r) {
     } else if (r.nlu.lemmaIntersection(['помощь', 'помочь'])) {
       rsp.msg = 'Это игра Угадай флаг. Вам нужно угадать как можно больше флагов стран. ' +
         'За каждый отгаданный флаг вы получайте очки, которые характеризуют ваши познания. ' +
-        'Вы можете пропустить вопрос, сказав Дальше.'
+        'Вы можете пропустить вопрос, сказав Далее.'
       rsp.msgJ = 'Это игра Угадай флаг. Тебе нужно угадать как можно больше флагов стран. ' +
         'За каждый отгаданный флаг ты получишь очки, которые характеризуют твои познания. ' +
-        'Ты можешь пропустить вопрос, сказав Дальше.'
+        'Ты можешь пропустить вопрос, сказав Далее.'
 
-    } else if (r.nlu.lemmaIntersection(['далекий', 'следующий', 'другой'])) {
+    } else if (r.nlu.lemmaIntersection(['далекий', 'следующий', 'другой', 'далее']) ||
+      ['далее', 'следующий'].includes(r.msg.toLowerCase())) {
       updateState();
       rsp.msg = 'Обновляю'
 
@@ -125,7 +128,6 @@ function* script(r) {
     }
     yield rsp;
   }
-
   rsp.msg = 'Поздравляю! Вы знаете все флаги мира!'
   rsp.msgJ = 'Поздравляю! Ты знаешь все флаги мира!'
   rsp.data = {'type': 'close_app'}

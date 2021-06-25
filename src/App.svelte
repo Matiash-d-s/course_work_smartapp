@@ -5,7 +5,7 @@
   import {setTheme} from './themes';
 
   let assistant;
-  let token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNjk4NTAzMzgzMjViZmViZjg2ZGVjYjAzZDkzZjkwZDQ2ZmMxNmNmZGZiNTUyMDAzNGQxOTFkMWEwYTQ4NDQyNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTYyNDQ0NjI5MiwiaWF0IjoxNjI0MzU5ODgyLCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiMTU1ZWEzYjktOTQyOC00NjJkLTkxZjEtOGYzZDk3NjBlODZhIiwic2lkIjoiY2MzYmJlYjktNjkxYS00MDhiLWI4OGQtZTE5OWRjZmZmZmZkIn0.t1thJRzlTSV3ADVOWQXQbETGmh5Vj2XZwPUyNC4fzgSbOYTPrZgHwRFgtBHnnQVC5aBOJRUiotfVCOsvfmG-fjbSAuPB5Mc_GjFJpJ1V2Y_yBhQ7_S6kz5eNooKELy53mPlV67fqta9hg32p4yoLYZUpMuO7gLKbcWOr5S7AZT6iOCgoRC5kALVdRbqHOjxSgLy_QtUCrK3hP_ehyG_S8o689_CdD7uz-_3HaD1IzAhuoBbyq3JAxinfqzfdmMPUWwCbCUf3HwYTaZJlVcbMOprm0ao0dZzkhdk3zgkqSVKpmqmB4y5iQie7UR8HrkAO-K5FZxcvuC4i5ulzAPcmaXYP845ZEzJaswbppkQHfBiDSy6zmAmTlMUzbb5tG1zINM0HdFMw0LmCRCRaFNChQpMYkL8rgLLahK87yh2vpHfdTtL8hXmNLh-QxyFcsuM7S6J23xNnSFnjWRenQ16KNKj10MSNwc1X551bXlTN_Tg-4foBrjnJOx-k-zXEK9DdIo8JEzVd5WxYUqrEztsztNGUUtQkMa91mstcbkP3dG9iOL0nuDuw0fgLfX1t0WFyZooCi3joRKsw5V3rIQce-f2rWVTtjpR7E9p8dY4-lIUOOiTC0H4778RRX7POmOdn7T8WmaxgE5jc9VIewMQ1jk6XQRBvSsHRt9dI2JIIxc8';       // Set token for assistant-client from https://developers.sber.ru/studio/settings/emulator
+  let token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNjk4NTAzMzgzMjViZmViZjg2ZGVjYjAzZDkzZjkwZDQ2ZmMxNmNmZGZiNTUyMDAzNGQxOTFkMWEwYTQ4NDQyNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTYyNDc0MzA0MCwiaWF0IjoxNjI0NjU2NjMwLCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiNDhmYWU0YmUtNWNkYy00MWY3LWE4YzItNDhmMmU5ZDgwMWM1Iiwic2lkIjoiNTdlNzlhN2MtNWMyYS00MTM2LTg0NWMtMzM3NjU0MjRjYzU2In0.dp4Zo6xFmUv54W4YFprQeTZ-o5M535PGkpox2KXy8CXOyqe4cBXAPtwgch4Ia0dtsYJx48DcggvLSffhogMOU7C_R5dOQTHUalC-lYHlDbb7LBRsoZdYO2cr4CIsscHRnrdHmMkAEBhhfZx8l3OV-ReOTZZfNWbWYSBX3Mup0-yY5FTf-txwkeZcEWMrkpgdNEGkTD5VCs2I3_boM3u6H5gSRKj1-UT2TnVz1oc66MedjwLb2ZVfMx2xurASZ7teW3J2hQgkBJO5J6nJ0-CSm7MRbNpk8JFF1DOgjmhbopxM8gqTZC26QTWC50pf8A8pvvosurUvAcizLpqCE2oUxrWtldsAG7URsMfqm1vazIM0nN-C6XFICokNrGWF5QEHDXEbuanu9Dca1P3UVjN80S2WtQlJa1CLTGDGdO5Y5rCswHdKP4f8pl3sZagekhljG5ynnonh__CYemohfqZUdVL9T6Ox06O1kAw9JMMSUPe4jaMxPqOqHhCTPoyRLxEykydJscZ6lAszn01JXCqk2qztVv_vxC8ME16ECfiO64La1AofdDZy9TKZUDDdLhXNMpPsK22AgIcRVNs6bSkyjllPOp3MTjh5ucaQS1HaSW-HuNcyUwRPMB2bcfzk394qYZDWGKXhx5apDTkjx02IY9vn9aisUWySKzbMRHDVUN8';       // Set token for assistant-client from https://developers.sber.ru/studio/settings/emulator
   let initPhrase = 'Запусти Угадай флаг';  // Set the name of your SmartApp for activation
 
   let character = 'eva';
@@ -20,6 +20,7 @@
   let country = {iso: 'bw'};
   let score = 0;
   let main;
+  let buttons = [];
   onMount(() => {
     function getState() {
       return {variants, country, score};
@@ -45,13 +46,6 @@
 
 
     assistant.on('data', (event) => {  // Set your action or data hooks
-      // fetch('/log', {
-      //   method: "POST",
-      //   body: JSON.stringify(event),
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      // });
       if (!event.type) {  // Use invariants to prevent errors on Sber Portal
         return;
       }
@@ -67,7 +61,9 @@
         }
         ({country, variants, score} = event.smart_app_data);
         main.focus();
-        logger.log(event.smart_app_data);
+        for (const i of Array(4).keys()) {
+          document.getElementById(`button-${i}`).blur();
+        }
       }
     });
   })
@@ -78,19 +74,21 @@
     }
     assistant.sendData({action: {action_id: 'click', data: variants[i].name}})
   }
+
+  logger.log(buttons)
 </script>
 
 <main bind:this={main}>
   <div class="card">
     <h2>Счет: {score}</h2>
-    <img src="/flags/{country.iso}.svg" alt="{country.name} flag">
-    <div class="buttons">
-      {#key variants}
+    {#key country.name}
+      <img src="/flags/{country.iso}.svg" alt="{country.name} flag">
+      <div class="buttons">
         {#each variants as {name, used}, i}
-          <button id="button-{i}" class:used on:click={() => {click(i)}}>{name}</button>
+          <button id='button-{i}' class:used on:click={() => {click(i)}}>{name}</button>
         {/each}
-      {/key}
-    </div>
+      </div>
+    {/key}
   </div>
 </main>
 
@@ -106,8 +104,7 @@
   }
 
   img {
-    min-width: 300px;
-    width: 60%;
+    width: 50%;
     margin: 20px;
   }
 
@@ -115,13 +112,13 @@
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
-    padding: 30px;
+    padding: 30px 10px;
     width: 80vw;
     max-width: 1000px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: -100px;
+    margin-top: -5%;
   }
 
   .used {
@@ -130,6 +127,7 @@
 
   .used:hover, .used:focus {
     background: var(--plasma-colors-buttonCritical);
+    border: 1px solid var(--plasma-colors-buttonWarning)
   }
 
   .buttons {
@@ -137,15 +135,18 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: 90%;
+    min-width: 160px;
   }
 
   button {
-    margin: 10px;
-    padding: 20px;
+    margin: 2%;
+    padding: calc(7px + (15 - 7) * ((100vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 700;
-    font-size: 25px;
+    /*font-size: 25px;*/
+    font-size: calc(12px + (18 - 12) * ((100vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 5px;
@@ -160,34 +161,9 @@
   h2 {
     text-align: center;
     margin: 0;
-    font-size: 50px;
+    font-size: calc(20px + (26 - 20) * ((100vw - 200px) / (1440 - 200)));
+
   }
 
 
-  @media (max-width: 600px) {
-    .card {
-      width: 100%;
-      margin: 0;
-    }
-
-    h2 {
-      font-size: 30px;
-    }
-
-    img {
-      min-width: 100px;
-      width: 90%;
-      padding: 10px;
-      max-height: 300px;
-    }
-
-    .card {
-      padding: 20px 0;
-    }
-
-    button {
-      font-size: 17px;
-      padding: 10px;
-    }
-  }
 </style>
